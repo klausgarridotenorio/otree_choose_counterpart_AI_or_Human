@@ -1,0 +1,48 @@
+{% block styles %}
+  <style>
+    .alert {
+      font-size: larger;
+    }
+  </style>
+{% endblock %}
+
+{% block title %}
+  Comprehension Check
+{% endblock %}
+
+{% block content %}
+  <h3>
+    {% formfield_errors 'comprehension_check' %}
+  </h3>
+  <br>
+
+  <h5>
+    {% if player.role == C.ROLE_BUYER %}
+      You are a {% C.ROLE_BUYER %}, the Base Market Price to Consumer is
+      {% market_price %}.
+    {% else %}
+      You are a {% C.ROLE_SUPPLIER %}, your Base Production Cost is
+      {% production_cost %}.
+    {% endif %}
+  </h5>
+  <br>
+
+  <h5>
+    You reached a binding agreement during a negotiation on a Price (NP)
+    of {% price %} and a Quality (Q) of {% quality %}.<br>
+    What is your Profit from that deal?
+  </h5>
+  <br>
+
+  <p>
+    Tip: Check the profit formula in the instructions page
+  </p>
+  <br>
+
+  <input name="comprehension_check" type="number" inputmode="numeric"
+         class="form-control" required="" value=""
+         placeholder="Enter your profit here as a single number">
+  <br>
+  
+  {% next_button %}
+{% endblock %}
